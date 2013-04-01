@@ -1,0 +1,37 @@
+%div.yp_banner
+  = image_tag("yp.png")
+%h2{:style => "margin-left:25px; text-shadow: 2px 2px 3px gray"}  All Courses Informations
+%h4{:style => "margin-left:250px; text-shadow: 2px 2px 3px gray"} Listing Courses
+
+= render "left_navigation_menu"
+
+%div.main_container_1h2
+  - if flash[:notice]
+    %div.alert.alert-success
+      %b= flash[:notice]
+
+%div.list-course
+  %table.table
+    %tr{:style => "background-color: #EEEEEE;"}
+      %th
+        = @category.title
+      %th
+        = link_to "Informations", edit_category_path(@category)  
+      %th
+        = link_to "Verify Categories", edit_category_path(@category)
+      %th
+        = link_to "Delete Categories", category_path(@category), :method => :delete, :data => {:confirm => "Are you sure to delete category '#{@category.title}'' ?"}
+    
+    -@category.courses.each do |course|
+      %tr
+        %td
+          =course.title
+        %td#course_action_show
+          = link_to "Show", course_path(course)
+        %td#course_action_edit
+          = link_to "Edit", edit_course_path(course)
+        %td#course_action
+          = link_to "Delete", course_path(course), :method => :delete, :data => {:confirm => "Are you sure to delete this course"}
+  %hr        
+  = link_to  "Add New Course", new_course_path, :class =>'btn btn-info'
+  = link_to  "Back", root_path, :class =>'btn'

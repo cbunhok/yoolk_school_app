@@ -1,0 +1,9 @@
+!!!
+%html
+  %head
+    %title School Manament System
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body{:style => "background-color:#FFDD00;"}
+    = yield

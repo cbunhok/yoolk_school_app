@@ -1,0 +1,21 @@
+= form_for(zone) do |f|
+  %div.create-new-cat
+    %fieldset
+      %legend
+        Create New Category
+        %table
+          %tr 
+            %td
+              = f.label :title, 'Title :'
+            %td
+              = f.text_field :title , {:placeholder => "Title Name...", :type => "text"}
+          %tr
+            %td
+              = f.label :description, 'Description :'
+            %td
+              = f.text_field :description, {:placeholder => "Description Name...", :type => "text"}
+          %tr
+            %td  
+              = submit_tag('Save', :class => 'btn btn-success')
+            %td
+              = link_to "Back", root_path, :class =>'btn'    

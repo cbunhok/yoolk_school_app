@@ -1,0 +1,17 @@
+%h1 Categories
+
+%table
+	%tr
+		%th 
+			%u Title
+		%th
+
+	- @categories.each do |category|
+		%tr
+			%td
+				%b= category.title
+			%td= link_to "show course", category_path(category)
+			%td= link_to "edit", edit_category_path(category)
+
+%br
+= link_to "Add New Category", new_category_path

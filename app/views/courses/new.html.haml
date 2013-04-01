@@ -1,0 +1,9 @@
+%div.yp_banner
+  = image_tag("yp.png")
+%h2{:style => "margin-left:25px; text-shadow: 1px 1px 2px gray"}  Create New Course
+
+= render"left_navigation_menu"
+= render(:partial => 'form', :locals => {:zone => @course})
+
+/ %br
+/ = link_to "Back", category_path(session[:category_id])

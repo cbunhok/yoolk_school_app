@@ -1,0 +1,8 @@
+%h1 Edit Category
+
+= link_to "Back", category_path(session[:category_id])
+
+%br
+%br
+
+= render(:partial => 'form', :locals => {:zone => @category})

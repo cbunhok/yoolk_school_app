@@ -1,0 +1,25 @@
+%div.yp_banner
+  = image_tag("yp.png")
+%h2{:style => "margin-left:25px; text-shadow: 2px 2px 3px gray"}  School Manament System
+%h4.click{:style => "margin-left:485px; text-shadow: 2px 2px 3px gray"}  Computer Programming Courses
+
+= render "left_navigation_menu"
+
+%div.main_container_1h2
+  - if flash[:notice]
+    %div.alert.alert-success
+      %b= flash[:notice]
+%div.main_container_1h{:style => "margin-left:250px; height:30px; padding-top:10px;"}
+  %span{:style => "color:white; font-size:18px;"}
+    = link_to "Add New Category", new_category_path
+
+%div.main_container_1
+  %div.tb_container
+    %dl
+      - @category.each do |category|
+        %dt{:style=> "font-size:20px;"}
+          = link_to category.title, category_path(category)
+        %dd
+          - category.courses.each do |course|
+            %li
+              = link_to course.title, course_path(course)

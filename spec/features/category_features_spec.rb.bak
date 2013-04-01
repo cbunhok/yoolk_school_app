@@ -1,0 +1,60 @@
+require 'spec_helper'
+
+feature "POST#Create" do
+  scenario "Category Successfully" do
+    visit new_category_path
+    expect{
+      fill_in "Title", with: "Web Development"
+      fill_in "Description", with: "Learning Web Development"
+      click_button "Save"
+    }.to change(Category, :count).by(1)
+
+    current_path.should == root_path
+    expect(page).to have_content("Create Successfully.")
+  end
+
+  scenario "Category not Successfully" do
+    visit new_category_path
+    expect{
+      fill_in "Title", with: nil
+      fill_in "Description", with: "AAA"
+      click_button "Save"
+    }.not_to change(Category, :count).by(1)
+
+    current_path.should == new_category_path
+  end
+
+end
+
+feature "Edit#GET" do
+  scenario "Show Edit Form" do
+    category = FactoryGirl.create(:category, title: 'Web', description: 'Web')
+
+    visit category_path(category)
+    visit edit_category_path(category)
+    expect(page).to have_content("Edit Category")
+    expect(page).to have_link("Back")
+  end
+
+  scenario "Update Category" do
+    category = FactoryGirl.create(:category, title: 'web', description: 'web-pros')
+    visit category_path(category)
+    visit edit_category_path(category)
+    expect{
+      Category.find(id).update_attribute("", true)
+      click_button "Save"
+    }
+    # expect{
+    #   # within "#{category.id}" do
+    #     fill_in "Title", with: "AAA"
+    #     click_button "Save"
+    #   # end
+    # }.to change{
+    #   category.title
+    # }.from("web").to("AAA")
+
+    current_path.should == edit_category_path(category)
+    expect(page).to have_content("Update Successfully.")
+  end
+
+end

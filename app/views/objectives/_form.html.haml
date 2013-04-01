@@ -1,0 +1,31 @@
+= form_for(zone) do |f|
+  %div.create-new-cat
+    / %hr
+    %table
+      %tr
+        %td
+          = f.label :course, "Course :"
+        %td
+          / # = f.label session[:course_name], {:style => "font-weight: bold;"}
+          = f.select(:course_id, Course.all.collect { |c| [c.title, c.id] }, {:selected => session[:course_id]})
+      %tr
+        %td
+          = f.label :title, "Title :" 
+        %td  
+          = f.text_field :title, {:placeholder => "Title Name...", :type => "text"}
+
+      %tr
+        %td
+          = f.label :description ,"Description :" 
+        %td
+          = f.text_field :description, {:placeholder => "Description...", :type => "text"}
+      %tr
+        %td
+
+      %tr
+        %td.action_create
+          = submit_tag('Save' , :class => 'btn btn-success')
+        %td
+          = link_to "Back", course_path(session[:course_id]), :class =>'btn'
+    / %hr
+          

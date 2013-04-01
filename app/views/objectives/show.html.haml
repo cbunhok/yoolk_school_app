@@ -1,0 +1,28 @@
+%h2 Course Objective for #{@course.title}
+
+= link_to "Add New Objective", new_objective_path
+
+%br
+%br
+
+- i = 1
+
+%table
+  %tr
+    %th No
+    %th Title
+    %th Action
+  - @course.objectives.each do |objective|
+    %tr
+      %td= i
+      %td= objective.title 
+
+      %td#objective_action
+        = link_to "Edit", edit_objective_path(objective)
+        = link_to "Delete", objective_path(objective), :method => :delete, :data => { :confirm => "Are you sure to delete this objective No.#{i}?" }
+
+    - i += 1
+
+%br
+
+= link_to "Back", course_path(session[:course_id])

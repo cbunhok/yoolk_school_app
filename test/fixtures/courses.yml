@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  short_title: MyString
+  duration: 1
+  category_id: 1
+  cost_per_day: 1
+  summary: MyString
+  is_published: false
+
+two:
+  title: MyString
+  short_title: MyString
+  duration: 1
+  category_id: 1
+  cost_per_day: 1
+  summary: MyString
+  is_published: false

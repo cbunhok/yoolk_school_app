@@ -1,0 +1,73 @@
+/ assigned couse_id to the session
+- session[:course_id] = params[:id]
+- course = @course.title
+%div.yp_banner
+  = image_tag("yp.png")
+%h2{:style => "margin-left:25px; text-shadow: 2px 2px 3px gray"} 
+  Course Name : #{course}
+= render "left_navigation_menu"
+%form.form-container
+  %fieldset
+    %div{:style => "background-color:#EEEEEE; height:30px;"}
+      %h4{:style => "padding:5px;"}
+        Course Overview
+    - day = "Days"
+    - usd = "USD"
+    %table.table_custom.table.table-condensed
+      %tr
+        %th
+          %b Short Title :
+        %td
+          =@course.short_title
+      %tr
+        %th
+          %b Duration :
+        %td
+          = @course.duration
+          %span
+            #{day}
+          %break 
+      %tr
+        %th
+          %b Cost Per Day :
+        %td
+          = @course.cost_per_day
+          %span
+            #{usd}
+          %break
+      %tr
+        %th
+          %b Summary :
+        %td
+          = @course.summary
+      %tr
+        %th
+          %b Published :
+        %td{:width => "670px"}
+          = @course.is_published 
+    
+    - i = 1
+    %table.table_custom_obj.table.table-condensed   
+      %tbody
+        %tr
+          %th{:style => "background-color:#EEEEEE; color:#3AA1BF "}
+            Objectives of #{course}
+          %td{:style => "background-color:#EEEEEE"}
+          %td{:style => "background-color:#EEEEEE"}
+          %td{:style => "background-color:#EEEEEE"}
+        -@course.objectives.each do |objective| 
+          %tr
+            %th
+              %b Objectives No.#{i} : 
+            %td
+              = objective.title
+            %td#action_edit_objective
+              = link_to "Edit", edit_objective_path(objective)
+            %td#action_delete_objective
+              = link_to "Delete", objective_path(objective), :method => :delete, :data => { :confirm => "Are you sure to delete this objective?" }   
+          - i = i+1
+
+  %hr
+  = link_to "Create New Objective", new_objective_path(), :class =>'btn btn-info'
+  = link_to "Back", category_path(session[:category_id]), :class =>'btn'
+

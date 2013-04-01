@@ -1,0 +1,74 @@
+= form_for(zone) do |f|
+  %div.create-new-cat
+    %table
+      %tr
+        %td
+          = f.label :category, "Category :"
+        %td
+          = f.select(:category_id, Category.all.collect {|c| [ c.title, c.id ] }, {:selected => session[:category_id]})
+      %tr
+        %td
+          = f.label :title, "Title :" 
+        %td
+          = f.text_field :title, {:placeholder => "Title Name...", :type => "text"}
+      %tr
+        %td
+          = f.label :short_title, "Short Title :"
+        %td
+          = f.text_field :short_title, {:placeholder => "Short Title...", :type => "text"}
+      %tr
+        %td
+          = f.label :duration ,"Duration :" 
+        %td
+          = f.text_field :duration, {:placeholder => "Duration...", :type => "text"}
+      %tr
+        %td
+          = f.label :cost_per_day, "Cost Per Day :"
+        %td
+          = f.text_field :cost_per_day, {:placeholder => "Cost Per Day...", :type => "text"}
+      %tr
+        %td
+          = f.label :summary, "Samary :"
+        %td
+          = f.text_area :summary, {:placeholder => "Samary...", :type => "text", :size => "0x5"}
+      %t
+        %td
+          = f.label :is_published, "Published :"
+        %td
+          = f.check_box :is_published
+      %tr
+        %td.action_update_rspec_save
+          = submit_tag('Save' , :class => 'btn btn-success')
+        %td
+          = link_to "Back", category_path(session[:category_id]), :class =>'btn'
+
+/ = form_for(zone) do |f|
+/   .field 
+/     = f.label :category
+/     = f.select(:category_id, Category.all.collect {|c| [ c.title, c.id ] }, {:selected => session[:category_id]})
+
+/   .field
+/     = f.label :title
+/     = f.text_field(:title)
+
+/   .field
+/     = f.label :short_title
+/     = f.text_field(:short_title)
+
+/   .field
+/     = f.label :duration
+/     = f.text_field(:duration)
+
+/   .field
+/     / = f.label :cost_per_day
+/     = f.text_field(:cost_per_day)
+
+/   .field
+/     = f.label :summary
+/     = f.text_field(:summary)
+
+/   .field
+/     = f.label :is_published
+/     = f.check_box(:is_published)
+/   .action
+/     = submit_tag('Save')

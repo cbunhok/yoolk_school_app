@@ -1,0 +1,15 @@
+
+%div.yp_banner
+  = image_tag("yp.png")
+%h2{:style => "margin-left:25px; text-shadow: 1px 1px 2px gray"}  Edit Objective
+
+- if flash[:notice]
+  %div.alert.alert-success.flash_notice
+    = flash[:notice]
+
+  %br
+
+= render "left_navigation_menu"
+%br
+= render(:partial => 'form', :locals => {:zone => @objective})
+/ = link_to "Back", course_path(session[:course_id])
